@@ -24,15 +24,23 @@
                                 <input type="email"
                                        name="email"
                                        th:value="${user.email}"
+                                       th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
                                        class="form-control" id="email">
-                                
+                                <div th:each="error :${#fields.errors('email')}" th:text="${error}"  class="invalid-feedback">
+
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password"
                                        name="password"
+                                       th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
                                        th:value="${user.password}"
                                        class="form-control" id="password" aria-describedby="emailHelp">
+
+                                <div th:each="error :${#fields.errors('password')}" th:text="${error}"  class="invalid-feedback">
+
+                                </div>
 
                             </div>
                         </div>
@@ -41,24 +49,35 @@
                             <input type="text" 
                                    class="form-control" 
                                    name="address"
+                                   th:classappend="${#fields.hasErrors('address') ? 'is-invalid' : ''}"
                                    th:value="${user.address}"
                                    id="inputAddress" placeholder="1234 Main St">
+                            <div th:each="error :${#fields.errors('address')}" th:text="${error}"  class="invalid-feedback">
+
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">City</label>
                                 <input type="text" 
                                        name="city"
+                                       th:classappend="${#fields.hasErrors('city') ? 'is-invalid' : ''}"
                                        th:value="${user.city}"
                                        class="form-control" id="inputCity">
+                                <div th:each="error :${#fields.errors('city')}" th:text="${error}"  class="invalid-feedback">
+
+                                </div>
                             </div>                                                     
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" 
                                    name="agreed"
+                                   th:classappend="${#fields.hasErrors('agreed') ? 'is-invalid' : ''}"
                                    class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Accept terms and conditions.</label>
+                            <div th:each="error :${#fields.errors('agreed')}" th:text="${error}"  class="invalid-feedback">
 
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>

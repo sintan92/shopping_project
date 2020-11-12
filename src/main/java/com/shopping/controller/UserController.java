@@ -4,6 +4,7 @@ package com.shopping.controller;
 import com.shopping.model.User;
 import com.shopping.service.UserService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,14 @@ public class UserController {
     
     
     @GetMapping("/")
+    public String showHomePage() {
+
+        return "home";
+
+    }
+
+    
+    @GetMapping("/login")
     public String showLoginPage(Model model) {
 
     model.addAttribute("user", new User());
@@ -38,7 +47,7 @@ public class UserController {
     }
     
         @PostMapping("logged")
-    public String ShowLoggedPage(/*@Valid*/ @ModelAttribute User login, BindingResult result) {
+    public String ShowLoggedPage(@Valid @ModelAttribute User login, BindingResult result) {
         
        
         List <User> list = serv.verify(login.getEmail(), login.getPassword());
@@ -49,14 +58,11 @@ public class UserController {
         } else {
             return "product";
         }
-        
-//         String verify = list.isEmpty()?"login":"success";
-//        return verify;
     
     }
     
     @PostMapping("process")
-    public String ShowSuccessPage(/*@Valid*/ @ModelAttribute User login, BindingResult result) {
+    public String ShowSuccessPage(@Valid @ModelAttribute User login, BindingResult result) {
 
 //        login.setRole("ROLE_USER");
 //        
@@ -76,7 +82,5 @@ public class UserController {
         }
 
     }
-    
-    
-    
+   
 }
