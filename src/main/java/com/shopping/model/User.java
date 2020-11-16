@@ -1,12 +1,16 @@
 
 package com.shopping.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -25,6 +29,7 @@ public class User implements Serializable {
     
     @Email(regexp = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)", message = "must be a valid email address")
     private String email;
+
     
     @Column(length=100)
     @NotBlank(message = "must enter a password")
@@ -39,6 +44,29 @@ public class User implements Serializable {
     
     @AssertTrue(message = "must accept terms and conditions")
     private boolean agreed;
+    
+    private String role;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
+    private List <Product> product;
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getEmail() {
         return email;
@@ -86,6 +114,19 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public User() {
+    }
+
+    public User(Long id, String email, String password, String address, String city, boolean agreed, String role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.city = city;
+        this.agreed = agreed;
+        this.role = role;
     }
 
     

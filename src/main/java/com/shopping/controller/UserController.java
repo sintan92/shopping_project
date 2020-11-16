@@ -16,12 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     
+    //
+    // det här är vår shopping sida
+    //
+    
     @Autowired
     private UserService serv;
     
     
     @GetMapping("/")
-    public String showHomePage() {
+    public String showHomePage(Model model) {
+        
+        model.addAttribute("user", new User());
 
         return "home";
 
@@ -30,10 +36,8 @@ public class UserController {
     
     @GetMapping("/login")
     public String showLoginPage(Model model) {
-
-    model.addAttribute("user", new User());
-
-        return "login";
+ 
+            return "login";
 
     }
 
@@ -46,27 +50,27 @@ public class UserController {
 
     }
     
-        @PostMapping("logged")
-    public String ShowLoggedPage(@Valid @ModelAttribute User login, BindingResult result) {
-        
-       
-        List <User> list = serv.verify(login.getEmail(), login.getPassword());
-        
-        if (list.isEmpty()) {
-
-            return "login";
-        } else {
-            return "product";
-        }
-    
-    }
-    
-    @PostMapping("process")
-    public String ShowSuccessPage(@Valid @ModelAttribute User login, BindingResult result) {
-
-//        login.setRole("ROLE_USER");
+//        @PostMapping("logged")
+//    public String ShowLoggedPage(@Valid @ModelAttribute User login, BindingResult result) {
 //        
-//        login.setPassword(serv.encryptPassword(login.getPassword()));
+//       
+//        List <User> list = serv.verify(login.getEmail(), login.getPassword());
+//        
+//        if (list.isEmpty()) {
+//
+//            return "login";
+//        } else {
+//            return "product";
+//        }
+//    
+//    }
+    
+    @PostMapping("/process")
+    public String ShowSuccessPage(@Valid @ModelAttribute("user") User user, BindingResult result) {
+
+        user.setRole("ROLE_USER");
+        
+        user.setPassword(serv.enCryptedPassword(user));
         
       
         if (result.hasErrors()) {
@@ -74,12 +78,11 @@ public class UserController {
             return "registration";
         } else {
 
-            serv.save(login);
+            serv.save(user);
 
         }
-        {
+        
             return "login";
-        }
 
     }
    

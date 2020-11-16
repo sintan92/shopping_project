@@ -9,6 +9,8 @@ public interface UserService {
     
     public void save(User login);
 
-    public List<User> verify(String email, String password);
+//    public List<User> verify(String email, String password);
+    
+    public String enCryptedPassword(User user);
     
 }
