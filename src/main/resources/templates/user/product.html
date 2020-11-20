@@ -13,48 +13,50 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
     <body>
+        
+                              
+
+        <table border="1" class= "table table-striped table-responsive-md text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>photo</th>
+                    <th>Buy</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}" th:value="${product.name}" th:field="${product.name}"> </td>
+                <td th:text="${product.price}"> </td>
+                <td th:text="${product.description}"> </td>
+                <td><img th:src="${product.photo }"></td>
+                <!--<td th:text="${product.photo}"> </td>-->
+                            
+                <td><form method="get"><a th:href="@{'/user/process-product/'+${product.id}}" type=submit class="btn btn-info" >Save Product</a></form>
+</td>
+            </tr>
+
+        </table>
+    
         <div class="container">
-  <div class="row">
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-  <img th:src="@{../img/vagg.jpg}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-        </div>
-      <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-  <img th:src="@{../img/oken.jpg}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-        </div>
-      <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-  <img th:src="@{../img/bil.jpg}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-        </div>
-        <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-  <img th:src="@{../img/vagg.jpg}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-        </div>
+            <div class="row">
+                
+                    <div class="card" style="width: 18rem;" th:each="product : ${products}">
+                        <div class="col-lg-6">
+                        <img th:src="${product.photo}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}"></h5>
+                            <p class="card-text" th:text="${product.description}"></p>
+                            <p class="card-text" th:text="${product.price}">$</p>
+                            <form method="get"><a th:href="@{'/user/process-product/'+${product.id}}" type=submit class="btn btn-primary">Add to cart</a></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -50,6 +52,19 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
     private List <Product> product;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
+    private List <OrderList> orderlist;
+
+    public List<OrderList> getOrderlist() {
+        return orderlist;
+    }
+
+    public void setOrderlist(List<OrderList> orderlist) {
+        this.orderlist = orderlist;
+    }
+
 
     public List<Product> getProduct() {
         return product;

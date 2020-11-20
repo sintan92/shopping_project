@@ -9,6 +9,30 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>shopping cart!</h1>
+       <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-6 offset-md-3">
+                        <h1> Products List</h1>
+            <table border="1" class= "table table-striped table-responsive-md text-center">
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Price</th>
+                        <th>Delete Product</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.name}"> </td>
+                    <td th:text="${order.price}"> </td>
+                <td><a class="btn btn-danger" href="#" th:href="@{'/user/product/delete/'+${order.id}}">Delete</a> </td>
+                </tr>
+
+            </table>
+                    </div>
+                    </div>
+       </div>
     </body>
 </html>
