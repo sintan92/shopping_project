@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/base_login_admin::layout(~{::body})">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${title}" >Document</title>
+    </head>
+    <body>
+        <h1 style='text-align: center'>Order List</h1>
+        <table border="1" class= "table table-striped table-responsive-md text-center">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Price</th>
+                    <th>Customer Email</th>
+                    <th>Customer Address</th>
+                    <th>Customer City</th>
+                    <th>Send Order</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tr th:each="findorder : ${findorders}">
+                <td th:text="${findorder.name}"> </td>
+                <td th:text="${findorder.price}+' '+kr"> </td>
+                <td th:text="${findorder.usermail}"> </td>
+                <td th:text="${findorder.useraddress}"> </td>
+                <td th:text="${findorder.usercity}"> </td>
+                <td><a class="btn btn-success" href="#" th:href="@{'/admin/product/delete/'+${findorder.id}}">Order Done</a> </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
