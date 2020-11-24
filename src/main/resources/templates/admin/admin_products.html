@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/base_login_admin::layout(~{::body})">
     <head>
         <title>TODO supply a title</title>
@@ -13,9 +7,6 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
     <body>
-
-
-
         <table border="1" class= "table table-striped table-responsive-md text-center">
             <thead>
                 <tr>
@@ -32,7 +23,6 @@ and open the template in the editor.
                 <td th:text="${adminproduct.name}" th:value="${adminproduct.name}" th:field="${adminproduct.name}"> </td>
                 <td th:text="${adminproduct.price}+' '+kr"> </td>
                 <td th:text="${adminproduct.genre}"> </td>
-                <!--<td th:text="${product.photo}"> </td>-->
 
                 <td><a  class="btn btn-danger" href="#" th:href="@{'/admin/product/deletebyadmin/'+${adminproduct.id}}">Delete</a>
                 </td>

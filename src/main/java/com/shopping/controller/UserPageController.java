@@ -79,6 +79,8 @@ public class UserPageController {
             orderProduct.setName(product.getName());
             orderProduct.setPrice(product.getPrice());
             orderProduct.setUsermail(user.getEmail());
+            orderProduct.setUseraddress(user.getAddress());
+            orderProduct.setUsercity(user.getCity());
             userserv.save(orderProduct);
 
         return "redirect:/user/product";

@@ -12,24 +12,21 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-md-6 offset-md-3">
-                    <h1> Products List</h1>
+                    <h1 style='text-align: center'>Your Shopping Cart List</h1>
                     <table border="1" class= "table table-striped table-responsive-md text-center">
                         <thead>
                             <tr>
                                 <th>Product name</th>
                                 <th>Price</th>
                                 <th>Delete Product</th>
-
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                         <tr th:each="order : ${orders}">
                             <td th:text="${order.name}"> </td>
                             <td th:text="${order.price}+' '+kr"> </td>
                             <td><a class="btn btn-danger" href="#" th:href="@{'/user/product/delete/'+${order.id}}">Delete</a> </td>
-
                         </tr>
                         <tr>
                             <td colspan="2" />

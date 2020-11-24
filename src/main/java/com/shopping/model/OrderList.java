@@ -20,6 +20,27 @@ public class OrderList implements Serializable {
     private String name;
     private int price;
     private String usermail;
+    private String useraddress;
+    private String usercity;
+
+    public String getUsercity() {
+        return usercity;
+    }
+
+    public void setUsercity(String usercity) {
+        this.usercity = usercity;
+    }
+    
+    
+
+    public String getUseraddress() {
+        return useraddress;
+    }
+
+    public void setUseraddress(String useraddress) {
+        this.useraddress = useraddress;
+    }
+    
 
     public String getUsermail() {
         return usermail;
