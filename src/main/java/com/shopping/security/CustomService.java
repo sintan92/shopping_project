@@ -14,7 +14,6 @@ public class CustomService implements UserDetailsService{
     @Autowired
     UserRepository repository;
     
-    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
@@ -23,11 +22,9 @@ public class CustomService implements UserDetailsService{
         if(user == null){
             throw new UsernameNotFoundException("user not found!");
         }
-        
         CustomUserDetails customUser = new CustomUserDetails(user);
         
-        return customUser;
-        
+        return customUser; 
     }
     }
    

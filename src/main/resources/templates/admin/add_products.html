@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/base_login_admin::layout(~{::body})">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${title}" >Document</title>
+    </head>
+    <body style="background-image: url('../img/admin.jpg'); color: white">
+        <section>
+            <div class="card mr-4 ml-3 bg-transparent">
+                <div class="card-body">
+                    <h1 class="text-center"> Add Products</h1>
+                    <div class="container-fluid mt">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <form action="#" 
+                                      th:object="${title}" 
+                                      th:action="@{/admin/addproduct}" 
+                                      method="get" 
+                                      class="mt-2">
+                                    <!-- name-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <input required type="text" id="name" name="name" placeholder="Enter Product Name!" class="form-control">
+                                    </div>
+                                    <!--price-->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <input required th:type="number" id="price" name="price" placeholder="Enter Product Price!" class="form-control">
+                                    </div>
+                                    <!--genre-->
+                                    <div class="form-group mt-3">
+                                        <textarea name="genre" id="mytextarea" rows="5" class="form-control" placeholder="Enter product genre!"></textarea>
+                                    </div>
+                                    <!--contact image-->
+                                    <div class="custom-file">
+                                        <input type="file" name="photo" >
+                                    </div>
+                                    <div class="container text-center">
+                                        <button  type=submit class="btn btn-info" >Save Product</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

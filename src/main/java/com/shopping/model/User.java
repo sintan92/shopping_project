@@ -10,14 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 
 @Entity
 public class User implements Serializable {
@@ -32,7 +29,6 @@ public class User implements Serializable {
     @Email(regexp = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)", message = "must be a valid email address")
     private String email;
 
-    
     @Column(length=100)
     @NotBlank(message = "must enter a password")
     @Size(min = 6, message = "Wrong password")
@@ -49,11 +45,11 @@ public class User implements Serializable {
     
     private String role;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "user")
     @JsonBackReference
     private List <Product> product;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "user")
     @JsonBackReference
     private List <OrderList> orderlist;
 
@@ -134,15 +130,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String email, String password, String address, String city, boolean agreed, String role) {
-        this.id = id;
+    public User(String email, String password, String address, String city, boolean agreed, String role) {
         this.email = email;
         this.password = password;
         this.address = address;
         this.city = city;
         this.agreed = agreed;
         this.role = role;
-    }
-
-    
+    } 
 }

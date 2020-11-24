@@ -3,16 +3,12 @@ package com.shopping.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import javax.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable {
@@ -23,9 +19,8 @@ public class Product implements Serializable {
     private Long id;
     private String name;
     private int price;
-    private String description;
+    private String genre;
     private String photo;
-
 
     public String getPhoto() {
         return photo;
@@ -35,28 +30,16 @@ public class Product implements Serializable {
         this.photo = photo;
     }
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JsonManagedReference
     private User user;
 
-    public Product(String name, int price, String description, String photo) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.photo = photo;
-    }
-    
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    @JsonManagedReference
-    private List<OrderList> orderlist;
-
-    public List<OrderList> getOrderlist() {
-        return orderlist;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setOrderlist(List<OrderList> orderlist) {
-        this.orderlist = orderlist;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public User getUser() {
@@ -65,16 +48,6 @@ public class Product implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-    
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Product() {
@@ -109,11 +82,4 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
     }
-
-    @Override
-    public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", photo=" + photo + ", user=" + user + ", orderlist=" + orderlist + '}';
-    }
-
-
 }

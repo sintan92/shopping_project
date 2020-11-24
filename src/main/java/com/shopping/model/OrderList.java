@@ -3,17 +3,12 @@ package com.shopping.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 
 @Entity
 public class OrderList implements Serializable {
@@ -24,14 +19,14 @@ public class OrderList implements Serializable {
     private Long id;
     private String name;
     private int price;
-    private int total;
+    private String usermail;
 
-    public int getTotal() {
-        return total;
+    public String getUsermail() {
+        return usermail;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setUsermail(String usermail) {
+        this.usermail = usermail;
     }
 
     public int getPrice() {
@@ -41,7 +36,6 @@ public class OrderList implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
-    
     
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JsonManagedReference
@@ -54,21 +48,6 @@ public class OrderList implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
-   
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Product> product;
-
-    public List<Product> getProduct() {
-        return product;
-    }
-
-    public void setProduct(List<Product> product) {
-        this.product = product;
-    }
-    
     
     public OrderList() {
     }
@@ -94,10 +73,4 @@ public class OrderList implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "OrderList{" + "id=" + id + ", name=" + name + ", price=" + price + ", total=" + total + ", product=" + product + '}';
-    }
-
-    
 }

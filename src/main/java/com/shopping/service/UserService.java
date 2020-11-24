@@ -12,8 +12,6 @@ public interface UserService {
     public void save(User user);
     
     public void save(OrderList orderlist);
-
-//    public List<User> verify(String email, String password);
     
     public String enCryptedPassword(User user);
     
@@ -21,13 +19,10 @@ public interface UserService {
     
     public void deleteProduct(long id);
     
+    public void deleteProductAdmin(long id);
+    
     public List<OrderList> findByUserId(long id);
     
-    
-//    public void deleteProduct(long id);
-//    
-//    void saveProduct(Product product);
-//    
-//    List<Product> getProducts();
-    
+    public List<Product> findbynamehaving(String name);
+
 }

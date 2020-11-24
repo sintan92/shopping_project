@@ -15,8 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class MyConfig extends WebSecurityConfigurerAdapter{
-    
-    
+   
     
     @Bean
     public UserDetailsService ServiceClass(){
@@ -30,7 +29,6 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
         
         return new BCryptPasswordEncoder();
     }
-    
     
     @Bean
     public DaoAuthenticationProvider authentication(){
@@ -52,21 +50,15 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
         auth.authenticationProvider(authentication());
         
     }
-    
-    
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
-        
-        //skriv en separat för båda om du vill ha fler sidor
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/default",true)
                 .and().csrf().disable();
-        
     }
-
 }
